@@ -37,11 +37,11 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-progress --no-suggest
 
-      - name: Copy .env.testing
-        run: cp .env.example .env
+      - name: Generate app key
+        run: php artisan key:generate --env=testing --force
 
       - name: Generate app key
-        run: php artisan key:generate
+        run: php artisan key:generate --env=testing
 
       - name: Run migrations
         run: php artisan migrate --env=testing
